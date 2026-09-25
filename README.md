@@ -6,16 +6,17 @@ switchleg's **SwitchPatch 29.33**. They use the same `.btp` format as the
 
 | Patch | What it does | XDF needed |
 |---|---|---|
-| [push-to-pass](push-to-pass/) `JB P2P v1.1 - S50.btp` | Hold the steering wheel cruise + or - button to run a chosen map slot. Let go and it returns to your map. Optional CEL/EPC blink while held. **Only works with cruise off.** | **Yes**: the included XDF adds 3 settings under Switch Patch. Ships off (all 0). |
+| [push-to-pass](push-to-pass/) `JB P2P v1.1 - S50.btp` | Hold the steering wheel cruise + or - button to run a chosen map slot. Let go and it returns to your map. Optional CEL/EPC blink while held. **Only works with cruise off.** | **Yes**: 3 settings under Switch Patch. Ships off (all 0). |
 | [mode-memory-startup](mode-memory-startup/) `JB ModeMemory v1.0 - S50.btp` | At key-on the engine starts in the drive mode it last ran in (for example Race) instead of Normal, without pressing the selector first. | No, there are no settings. |
+| [rolling-anti-lag-v2](rolling-anti-lag-v2/) `JB RAL V2 v1.0 - S50.btp` | RAL only engages after a deliberate hold (300 ms suggested), Cancel becomes a third button choice, and RAL no longer bucks when it hits its time limit with the button still held. | **Yes**: the hold, Cancel as button 2, and the time limit in seconds, under RAL. Hold and Cancel ship off (0 = stock); the time-limit fix is always on. |
 
 ## How they work
 
 A `.btp` is a list of `{offset, original bytes, patched bytes}` records with a CRC. Applying
 checks that every original byte is there, then writes the new ones. That is why CHECK and REMOVE
 are exact, and why a patch refuses a bin it doesn't recognize. Each patch hooks switchpatch 29.33
-code and puts its own routine in blank ASW flash just after the switchpatch block. The two patches
-use separate space (`0x132D44` and `0x132E80`), so you can apply either one or both, in any order.
+code and puts its own routine in blank ASW flash just after the switchpatch block. The patches
+use separate space (`0x132D44`, `0x132E80` and `0x132F40`), so you can apply any of them, in any order.
 
 ## Requirements
 
@@ -33,10 +34,10 @@ python btp_apply.py remove "push-to-pass/JB P2P v1.1 - S50.btp" out.bin -o back.
 
 - Push-to-pass only: **map select** enabled in the switchpatch (XDF: Map Switching > UI button,
   `0x27CB28`, tested with 1 = Cruise Resume).
-- Push-to-pass only: **TunerPro** with
-  `push-to-pass/SC8S50_switchpatch29.33_v1.001+p2p.xdf`. This is the stock 29.33 S50 XDF plus
-  three tables: plus map `0x27CB3F`, minus map `0x27CB3E`, lamps `0x27CB3B`. If you have your own
-  XDF, you can copy those three `XDFTABLE` entries into it.
+- Push-to-pass and RAL V2: **TunerPro** with `SC8S50_switchpatch29.33_v1.001+JB-patches.xdf` (repo root), one XDF for every patch here. It
+  is the stock 29.33 S50 XDF plus push-to-pass's three tables (`0x27CB3F`, `0x27CB3E`, `0x27CB3B`,
+  under Switch Patch), RAL V2's minimum hold (`0x27D81B`) and Cancel as RAL button 2, and the RAL
+  time limit shown in seconds. If you have your own XDF, you can copy those entries into it.
 - Mode memory: a car with Driving Profile Selection (MK7). Without it, the patch does nothing.
 
 Each folder's README covers the dependencies, testing and caveats. Road tested on one car (MK7

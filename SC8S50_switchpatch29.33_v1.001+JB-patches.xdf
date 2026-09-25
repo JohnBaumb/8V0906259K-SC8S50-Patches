@@ -31258,7 +31258,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB16" flags="0x30">
-    <title>Maximum engagement cycles</title>
+    <title>Maximum engagement time</title>
+    <description>Seconds RAL may stay engaged after its fade-in, shown at 3500 rpm. The counter runs 100 per second plus 1 per ignition event, so the real time is X / (100 + rpm/30): about 15 percent longer at 2500 rpm, 10 percent shorter at 4500 rpm. SwitchPatch 29.33 default 500 = 2.3 s. With the RAL V2 patch, RAL fades out once at the limit and stays off until the button is released; without it RAL re-engages instantly with no retard, a hard buck.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31286,19 +31287,19 @@
     </XDFAXIS>
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7CB16" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>sparks</units>
-      <decimalpl>2</decimalpl>
+      <units>s</units>
+      <decimalpl>1</decimalpl>
       <min>0.000000</min>
-      <max>65535.000000</max>
+      <max>10.000000</max>
       <outputtype>1</outputtype>
-      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+      <MATH equation="X / 216.6667">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB18" flags="0x30">
     <title>Rev soft limit above engagement point</title>
-    <description>At this point the engine cuts fuel and spark to 1 cylinder every 4</description>
+    <description>rpm above the engagement rpm where the soft cut starts (fuel and spark cut to 1 cylinder in 4).</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31327,7 +31328,7 @@
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7CB18" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>rpm</units>
-      <decimalpl>2</decimalpl>
+      <decimalpl>0</decimalpl>
       <min>0.000000</min>
       <max>8160.000000</max>
       <outputtype>1</outputtype>
@@ -31338,7 +31339,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB1A" flags="0x30">
     <title>Rev medium limit above engagement point</title>
-    <description>At this point the engine cuts fuel and spark to 1 cylinder every 3</description>
+    <description>rpm above the SOFT limit (not the engagement rpm) where the medium cut starts (1 cylinder in 3). SwitchPatch default 64. Larger steps make the hold softer but let rpm and road speed creep further.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31367,7 +31368,7 @@
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7CB1A" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>rpm</units>
-      <decimalpl>2</decimalpl>
+      <decimalpl>0</decimalpl>
       <min>0.000000</min>
       <max>8160.000000</max>
       <outputtype>1</outputtype>
@@ -31378,7 +31379,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB1C" flags="0x30">
     <title>Rev hard limit above engagement point</title>
-    <description>At this point the engine cuts fuel and spark to 2 cylinder every 4</description>
+    <description>rpm above the MEDIUM limit where the hard cut starts (2 cylinders in 4). SwitchPatch default 64.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31407,7 +31408,7 @@
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7CB1C" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>rpm</units>
-      <decimalpl>2</decimalpl>
+      <decimalpl>0</decimalpl>
       <min>0.000000</min>
       <max>8160.000000</max>
       <outputtype>1</outputtype>
@@ -31690,7 +31691,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB26" flags="0x30">
     <title>RAL engagement button</title>
-    <description>0: set 1: resume</description>
+    <description>0: set 1: resume 2: cancel (2 needs the RAL V2 patch; without it 2 acts as set)</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31718,11 +31719,50 @@
     </XDFAXIS>
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7CB26" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <decimalpl>2</decimalpl>
+      <decimalpl>0</decimalpl>
       <min>0.000000</min>
-      <max>1.000000</max>
+      <max>2.000000</max>
       <outputtype>1</outputtype>
       <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D81B" flags="0x30">
+    <title>RAL minimum hold</title>
+    <description>ms the RAL button must be held before RAL engages, 0 to 2540. 0 = engage on press. Needs the RAL V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="254" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D81B" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>2540.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((10.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>

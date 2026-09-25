@@ -24,7 +24,7 @@ refusing to apply if the bytes it expects are not there.
 | Blank flash at file `0x132D44..0x132E78` (308 bytes after the switchpatch block) | Where the routine and lamp function live. No S50 patch in the BinToolz set writes there (HSL, CBRICK, SWG, Immo, FREE SAP, switchpatch 28.12 to 29.33 checked). |
 | **Full flash** (ASW) after applying | The code is in ASW1, a CAL-only flash will not carry it. Changing the three settings afterwards is CAL-only. |
 | BinToolz, or stock Python 3 with the `btp_apply.py` in the repo root | To apply, check or remove the `.btp`. |
-| TunerPro with the included `SC8S50_switchpatch29.33_v1.001+p2p.xdf` | The only way to set which map each button holds and whether the lamps are on. The XDF is the stock 29.33 S50 XDF plus three bytes under **Switch Patch**. |
+| TunerPro with `SC8S50_switchpatch29.33_v1.001+JB-patches.xdf` from the repo root | The only way to set which map each button holds and whether the lamps are on. It is the stock 29.33 S50 XDF plus the settings for every patch in this repo; push-to-pass's three bytes are under **Switch Patch**. |
 | The steering wheel's cruise + and - buttons | They are the switchpatch's map-up / map-down buttons. Push-to-pass only reads them while no map-switch gesture is open and cruise control is off. |
 
 ## Applying it
@@ -46,7 +46,7 @@ the unpatched byte pattern, so it will not stack on itself or half-apply.
 
 ## Settings
 
-Three calibration bytes, defined in the included XDF under **Switch Patch**. The patch itself
+Three calibration bytes, defined in the repo-root XDF under **Switch Patch**. The patch itself
 never writes them, so applying or removing it leaves your settings alone:
 
 | Setting | Address | Values |
