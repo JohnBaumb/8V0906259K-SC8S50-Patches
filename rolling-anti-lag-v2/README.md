@@ -56,7 +56,7 @@ ending until you set them.
 | Setting | Address | Values | Test car |
 |---|---|---|---|
 | RAL engagement button | `0x27CB26` | 0 = Set, 1 = Resume (stock), **2 = Cancel** (new) | 2 |
-| RAL minimum hold (new) | `0x27D81B` | 0 to 2540 ms in 10 ms steps, 0 = engage on press | 300 ms |
+| JB-RAL minimum hold (new) | `0x27D81B` | 0 to 2540 ms in 10 ms steps, 0 = engage on press | 300 ms |
 | Maximum engagement time | `0x27CB16` | 0 to 10 s (stock 29.33 value 500 shows as 2.3 s) | 10 s |
 | Rev soft / medium / hard limit | `0x27CB18` / `1A` / `1C` | rpm, each step measured from the one before | stock 0 / 64 / 64 |
 

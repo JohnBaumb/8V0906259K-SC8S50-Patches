@@ -60,8 +60,9 @@
     <CATEGORY index="0x32" name="Map Switching" />
     <CATEGORY index="0x33" name="PUT Setpoint" />
     <CATEGORY index="0x34" name="Manifold Max Pressure" />
+    <CATEGORY index="0x35" name="Spark CATLESS ONLY" />
     <CATEGORY index="0xAF" name="Axis" />
-    <CATEGORY index="0xC3" name="Launch Control" />
+    <CATEGORY index="0xC3" name="Launch Control (factory)" />
     <CATEGORY index="0xEC" name="MPI" />
     <CATEGORY index="0xED" name="IAT" />
     <CATEGORY index="0xEE" name="TQ" />
@@ -15922,46 +15923,6 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x185D8" flags="0x30">
-    <title>Calibratible table of inhibit assignments</title>
-    <description>C_LF_CMB_MOD_INH_STOP_TRAN[0][OPP_1]</description>
-    <CATEGORYMEM index="0" category="12" />
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>1</indexcount>
-      <outputtype>4</outputtype>
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <LABEL index="0" value="-" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>1</indexcount>
-      <outputtype>4</outputtype>
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <LABEL index="0" value="-" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="z">
-      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x185D8" mmedelementsizebits="32" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>-</units>
-      <decimalpl>2</decimalpl>
-      <min>0.000000</min>
-      <max>4294967296.000000</max>
-      <outputtype>1</outputtype>
-      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFTABLE>
   <XDFTABLE uniqueid="0x9128" flags="0x30">
     <title>Minimum engine speed to allow MPI valve diagnostic (SCP, SCG, OC)</title>
     <description>C_N_32_MIN_IV_MPI_DIAG</description>
@@ -23964,10 +23925,116 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
+  <XDFTABLE uniqueid="0xc8d2" flags="0x30">
+    <title>Active mode for torque limitation at DROF</title>
+    <description>FACTORY. Mode of the drive-off torque limiter (Maximum allowed torque at clutch in case of DROF). 3 = on for 2WD and 4WD (stock), 0 = off (from the code, not tested in a car). Off removes the clutch protection completely: prefer raising the tables.</description>
+    <CATEGORYMEM index="0" category="196" />
+    <XDFAXIS uniqueid="0x0" id="x">
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+      <LABEL index="0" value="-" />
+    </XDFAXIS>
+    <XDFAXIS uniqueid="0x0" id="y">
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+      <LABEL index="0" value="-" />
+    </XDFAXIS>
+    <XDFAXIS uniqueid="0x0" id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x6" mmedaddress="0xc8d2" mmedelementsizebits="8" mmedcolcount="1" mmedrowcount="1" mmedmajorstridebits="8" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <min>0.0</min>
+      <max>3.0</max>
+      <units>-</units>
+      <embedinfo type="3" linkobjid="0xc8d2" />
+      <DALINK index="0" />
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xc8d3" flags="0x30">
+    <title>Delay time to activate the torque limitation at DROF</title>
+    <description>FACTORY. Seconds after the car starts rolling before the drive-off torque limiter starts. 0 = at once (stock).</description>
+    <CATEGORYMEM index="0" category="196" />
+    <XDFAXIS uniqueid="0x0" id="x">
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+      <LABEL index="0" value="-" />
+    </XDFAXIS>
+    <XDFAXIS uniqueid="0x0" id="y">
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+      <LABEL index="0" value="-" />
+    </XDFAXIS>
+    <XDFAXIS uniqueid="0x0" id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x6" mmedaddress="0xc8d3" mmedelementsizebits="8" mmedcolcount="1" mmedrowcount="1" mmedmajorstridebits="8" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <min>0.0</min>
+      <max>2.55</max>
+      <units>s</units>
+      <embedinfo type="3" linkobjid="0xc8d3" />
+      <DALINK index="0" />
+      <MATH equation="((1.0 * X) - 0.0 ) / (100.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xc8d4" flags="0x30">
+    <title>Maximum vehicle speed to activate the torque limitation at DROF</title>
+    <description>FACTORY. km/h above which the drive-off torque limiter ends. Stock 35.</description>
+    <CATEGORYMEM index="0" category="196" />
+    <XDFAXIS uniqueid="0x0" id="x">
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+      <LABEL index="0" value="-" />
+    </XDFAXIS>
+    <XDFAXIS uniqueid="0x0" id="y">
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+      <LABEL index="0" value="-" />
+    </XDFAXIS>
+    <XDFAXIS uniqueid="0x0" id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x6" mmedaddress="0xc8d4" mmedelementsizebits="8" mmedcolcount="1" mmedrowcount="1" mmedmajorstridebits="8" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <min>0.0</min>
+      <max>255.0</max>
+      <units>km/h</units>
+      <embedinfo type="3" linkobjid="0xc8d4" />
+      <DALINK index="0" />
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
   <XDFTABLE uniqueid="0x669CA" flags="0x30">
     <title>Maximum allowed torque at clutch in case of DROF (MT)</title>
-    <description>IP_TQ_POW_MAX_DROF_MT&#013;&#010;X: ldpm_n_tq_pow_max_drof&#013;&#010;Y: ldpm_n_vs_h</description>
-    <CATEGORYMEM index="0" category="35" />
+    <description>FACTORY. Manual-gearbox drive-off clutch protection. Caps torque at the clutch (Nm) from the first km/h up to the max vehicle speed setting. X = engine rpm, Y = clutch slip as engine rpm per km/h (first gear engaged is about 115; more slip = lower limit). Stock cuts to 60-90 Nm at 3500+ rpm with a slipping clutch: the launch bog and boost dump. 2WD version; the Golf R probably uses the 4WD one. Edit both the same. Raising it adds clutch heat and driveline shock.</description>
+    <CATEGORYMEM index="0" category="196" />
+    <CATEGORYMEM index="1" category="35" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xC8B8" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>rpm</units>
@@ -24008,8 +24075,9 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x66A12" flags="0x30">
     <title>Maximum allowed torque at clutch in case of DROF (MT, 4WD)</title>
-    <description>IP_TQ_POW_MAX_DROF_MT_4WD&#013;&#010;X: ldpm_n_tq_pow_max_drof&#013;&#010;Y: ldpm_n_vs_h</description>
-    <CATEGORYMEM index="0" category="35" />
+    <description>FACTORY. Manual-gearbox drive-off clutch protection. Caps torque at the clutch (Nm) from the first km/h up to the max vehicle speed setting. X = engine rpm, Y = clutch slip as engine rpm per km/h (first gear engaged is about 115; more slip = lower limit). Stock cuts to 60-90 Nm at 3500+ rpm with a slipping clutch: the launch bog and boost dump. 4WD version; the 2WD one sits next to it. Edit both the same. Raising it adds clutch heat and driveline shock.</description>
+    <CATEGORYMEM index="0" category="196" />
+    <CATEGORYMEM index="1" category="35" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xC8B8" mmedelementsizebits="16" mmedcolcount="6" mmedmajorstridebits="16" mmedminorstridebits="0" />
       <units>rpm</units>
@@ -31181,6 +31249,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB12" flags="0x30">
     <title>Minimum engagement RPM</title>
+    <description>RAL engages only while rpm is between this and Maximum engagement RPM, checked every tick until it engages.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31220,6 +31289,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB14" flags="0x30">
     <title>Maximum engagement RPM</title>
+    <description>RAL engages only while rpm is between Minimum engagement RPM and this, checked every tick until it engages.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31448,16 +31518,17 @@
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7CB1E" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>kpa</units>
       <decimalpl>2</decimalpl>
-      <min>-2716.949951</min>
-      <max>2716.949951</max>
+      <min>-271.700000</min>
+      <max>271.700000</max>
       <outputtype>1</outputtype>
-      <MATH equation="((1.0 * X) - 32768.0 ) / (120.06017666543982 - (0.0 * X))">
+      <MATH equation="((1.0 * X) - 32768.0 ) / (120.6017666543982 - (0.0 * X))">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB20" flags="0x30">
-    <title>Ramp in cycles</title>
+    <title>RAL ramp in cycles</title>
+    <description>Fade-in of the RAL ignition retard after it engages, about 5 ms per step (80 = about 0.4 s). Maximum engagement time only starts counting after it.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31496,7 +31567,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB21" flags="0x30">
-    <title>Ramp out cycles</title>
+    <title>RAL ramp out cycles</title>
+    <description>Fade-out of the RAL ignition retard when RAL ends, about 5 ms per step (40 = about 0.2 s).</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31536,6 +31608,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB22" flags="0x30">
     <title>Maximum acceleration allowed to enable RAL</title>
+    <description>RAL engages only while the car's acceleration is within +/- this, checked every tick until it engages. Press the button before flooring the pedal, or RAL may refuse for the whole hold.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31612,7 +31685,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB24" flags="0x30">
-    <title>Minimum oil temperature</title>
+    <title>RAL minimum oil temperature</title>
+    <description>RAL engages only when the oil is warmer than this. Checked only when RAL engages, so RAL already on is not dropped by a reading at the limit. Separate from the LC minimums.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31651,7 +31725,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB25" flags="0x30">
-    <title>Minimum coolant temperature</title>
+    <title>RAL minimum coolant temperature</title>
+    <description>RAL engages only when the coolant is warmer than this. Checked only when RAL engages, so RAL already on is not dropped by a reading at the limit. Separate from the LC minimums.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -31729,7 +31804,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D81B" flags="0x30">
-    <title>RAL minimum hold</title>
+    <title>JB-RAL minimum hold</title>
     <description>ms the RAL button must be held before RAL engages, 0 to 2540. 0 = engage on press. Needs the RAL V2 patch, otherwise unused.</description>
     <CATEGORYMEM index="1" category="254" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -31758,11 +31833,493 @@
     </XDFAXIS>
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D81B" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>ms</units>
       <decimalpl>0</decimalpl>
       <min>0.000000</min>
       <max>2540.000000</max>
       <outputtype>1</outputtype>
       <MATH equation="((10.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D813" flags="0x30">
+    <title>JB-LC limiter mode</title>
+    <description>Map slot 1. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="252" />
+    <CATEGORYMEM index="2" category="248" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D813" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D814" flags="0x30">
+    <title>JB-LC limiter mode</title>
+    <description>Map slot 2. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="252" />
+    <CATEGORYMEM index="2" category="247" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D814" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D815" flags="0x30">
+    <title>JB-LC limiter mode</title>
+    <description>Map slot 3. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="252" />
+    <CATEGORYMEM index="2" category="246" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D815" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D816" flags="0x30">
+    <title>JB-LC limiter mode</title>
+    <description>Map slot 4. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="252" />
+    <CATEGORYMEM index="2" category="245" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D816" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D817" flags="0x30">
+    <title>JB-LC limiter mode</title>
+    <description>Map slot 5. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="252" />
+    <CATEGORYMEM index="2" category="244" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D817" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D819" flags="0x30">
+    <title>JB-LC spark cut misfire fade-out hold</title>
+    <description>SPARK CUT MODE ONLY. ms misfire detection stays faded out after the spark cut disarms, 0 to 2550. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="242" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D819" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>ms</units>
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>2550.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((10.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D81A" flags="0x30">
+    <title>JB-LC spark cut ignition angle</title>
+    <description>SPARK CUT MODE ONLY. deg BTDC forced while the spark cut is armed and rpm is above Target RPM - 250. Applied through the SwitchPatch spark modifier, and the ECU's minimum ignition angle is lowered to the same value while it is active, so this is the final angle. -25 = what SwitchPatch mode runs. Needs the LC V2 patch, otherwise unused.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="242" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D81A" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>degree</units>
+      <decimalpl>1</decimalpl>
+      <min>-35.600000</min>
+      <max>60.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 95.0 ) / (2.6667 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D818" flags="0x30">
+    <title>JB-LC exhaust flaps open</title>
+    <description>BOTH MODES. 1 = both exhaust flaps forced open while launch control holds. Stock flap control returns when launch control lets go. 0 = stock. Needs the LC V2 patch.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D818" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D856" flags="0x30">
+    <title>JB-LC boost cap</title>
+    <description>SWITCHPATCH MODE ONLY. psi above ambient. A fixed ceiling on launch boost while the SwitchPatch LC holds. 0 = off. Launch boost itself is set by Target TQ (Nm): more Nm = more boost, this cap only trims it. Why a cap: the boost a given Nm asks for moves with ambient pressure, air temperature and timing, the psi cap does not. If boost stays under the cap, raise Target TQ (test car: 250 Nm held 6.5 psi, 450 Nm reached 15). More boost = more heat and clutch load. Needs the LC V2 patch.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D856" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>psi</units>
+      <decimalpl>1</decimalpl>
+      <min>0.000000</min>
+      <max>30.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (831.53 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D872" flags="0x30">
+    <title>JB-LC spark cut boost cap</title>
+    <description>SPARK CUT MODE ONLY. psi above ambient. Caps the boost setpoint while the spark cut holds. 0 = off (the tune's full-throttle boost). At -25 deg the wastegate opens early, so set it a few psi above what you want (test car: a 15 cap held about 12 in 2.5 s). More boost = more exhaust heat and a harder launch. Needs the LC V2 patch (v28 or later).</description>
+    <CATEGORYMEM index="1" category="250" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D872" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>psi</units>
+      <decimalpl>1</decimalpl>
+      <min>0.000000</min>
+      <max>30.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (831.53 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D858" flags="0x30">
+    <title>JB-LC spark cut lambda</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Lambda while the spark cut holds, only ever richer. 0 = off. Extra fuel burns in the exhaust (flames). RISKS: with a cat or GPF it burns inside it and can melt or crack it. Heats turbo, manifold, O2 sensors and flaps. Flames can scorch the bumper or anything behind the car. Rich DI dilutes the oil. Below about 0.75 the fired cylinders can misfire. Short holds, cool down between them. Not road legal. Needs the LC V2 patch.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D858" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>1.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (128.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D859" flags="0x30">
+    <title>JB-LC spark cut burst length</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Segments cut in a row above Target RPM, then one fired segment lights them. 0 or 1 = smooth hold. 3 to 8 = bigger bangs. RISKS: pressure spikes on the turbo, wastegate, gaskets, O2 sensors and mufflers. With a cat the mixture burns inside it and can melt or crack it. Longer bursts = rougher hold, more shock on the mounts. Misfire detection is off during a hold. Short holds, cool down between them. Needs the LC V2 patch.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D859" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -31802,7 +32359,7 @@
       <min>-35.619999</min>
       <max>60.000000</max>
       <outputtype>1</outputtype>
-      <MATH equation="((1.0 * X) - 95.0 ) / (2.66667.0 - (0.0 * X))">
+      <MATH equation="((1.0 * X) - 95.0 ) / (2.666666666666667 - (0.0 * X))">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -32203,6 +32760,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB31" flags="0x30">
     <title>Timing during RPM limiter and rampout</title>
+    <description>SWITCHPATCH MODE ONLY. Ignition angle while the SwitchPatch limiter holds and while it ramps out. Spark cut mode uses JB-LC spark cut ignition angle instead.</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32242,6 +32800,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB32" flags="0x30">
     <title>Target TQ</title>
+    <description>SWITCHPATCH MODE ONLY. Torque request that replaces the pedal while the SwitchPatch limiter holds, which sets how much air and boost it builds: this is the SwitchPatch's launch boost setting (test car: 250 Nm held about 6.5 psi, 450 Nm asked for more than 15). JB-LC boost cap can only lower it. Spark cut mode keeps the pedal request instead.</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32280,7 +32839,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB34" flags="0x30">
-    <title>Ramp out cycles</title>
+    <title>LC ramp out cycles</title>
+    <description>SWITCHPATCH MODE ONLY. Length of the SwitchPatch limiter's ramp out after launch control lets go. Spark cut mode lets go at once: all coils and normal timing are back on the next ignition event.</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32320,6 +32880,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB36" flags="0x30">
     <title>Target RPM</title>
+    <description>BOTH MODES. Launch rpm the limiter holds. SwitchPatch mode engages 250 rpm below it. Spark cut mode cuts all coils above it and switches to its own ignition angle 250 rpm below it.</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32358,7 +32919,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB38" flags="0x30">
-    <title>Minimum oil temperature</title>
+    <title>LC minimum oil temperature</title>
+    <description>BOTH MODES. Launch control only arms when the oil is warmer than this. Checked only when launch control arms, so a launch already holding is never dropped by a reading at the limit. 0 = no minimum. The SwitchPatch has this setting but never reads it: without the patch launch control arms at any temperature. Needs the LC 1.5 patch (included in LC V2).</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32397,7 +32959,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB39" flags="0x30">
-    <title>Minimum coolant temperature</title>
+    <title>LC minimum coolant temperature</title>
+    <description>BOTH MODES. Launch control only arms when the coolant is warmer than this. Checked only when launch control arms, so a launch already holding is never dropped by a reading at the limit. 0 = no minimum. The SwitchPatch has this setting but never reads it: without the patch launch control arms at any temperature. Needs the LC 1.5 patch (included in LC V2).</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32437,6 +33000,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB3C" flags="0x30">
     <title>Release RPM limiter speed</title>
+    <description>BOTH MODES. Launch control lets go once the slowest wheel passes this speed, or 15 km/h, whichever is lower.</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32467,7 +33031,7 @@
       <units>kph</units>
       <decimalpl>2</decimalpl>
       <min>1.000000</min>
-      <max>20.000000</max>
+      <max>15.000000</max>
       <outputtype>1</outputtype>
       <MATH equation="((1.0 * X) - 0.0 ) / (100.0 - (0.0 * X))">
         <VAR id="X" />
@@ -35366,6 +35930,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D81C" flags="0x30">
     <title>Enable RAL</title>
+    <description>Map slot 1. 1 = RAL can be engaged on this slot, 0 = off.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="248" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35405,6 +35970,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D81D" flags="0x30">
     <title>Enable RAL</title>
+    <description>Map slot 2. 1 = RAL can be engaged on this slot, 0 = off.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="247" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35444,6 +36010,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D81E" flags="0x30">
     <title>Enable RAL</title>
+    <description>Map slot 3. 1 = RAL can be engaged on this slot, 0 = off.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="246" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35483,6 +36050,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D81F" flags="0x30">
     <title>Enable RAL</title>
+    <description>Map slot 4. 1 = RAL can be engaged on this slot, 0 = off.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="245" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35522,6 +36090,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D820" flags="0x30">
     <title>Enable RAL</title>
+    <description>Map slot 5. 1 = RAL can be engaged on this slot, 0 = off.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="244" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35756,6 +36325,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D835" flags="0x30">
     <title>Enable LC</title>
+    <description>BOTH MODES. Map slot 1. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="248" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35795,6 +36365,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D836" flags="0x30">
     <title>Enable LC</title>
+    <description>BOTH MODES. Map slot 2. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="247" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35834,6 +36405,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D837" flags="0x30">
     <title>Enable LC</title>
+    <description>BOTH MODES. Map slot 3. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="246" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35873,6 +36445,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D838" flags="0x30">
     <title>Enable LC</title>
+    <description>BOTH MODES. Map slot 4. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="245" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -35912,6 +36485,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D839" flags="0x30">
     <title>Enable LC</title>
+    <description>BOTH MODES. Map slot 5. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="244" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -38378,86 +38952,8 @@
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x7F493" flags="0x30">
-    <title>Gauge settings (bitmask)</title>
-    <CATEGORYMEM index="1" category="252" />
-    <CATEGORYMEM index="2" category="245" />
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>1</indexcount>
-      <outputtype>4</outputtype>
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <LABEL index="0" value="-" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>1</indexcount>
-      <outputtype>4</outputtype>
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <LABEL index="0" value="-" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="z">
-      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7F493" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <decimalpl>2</decimalpl>
-      <min>0.000000</min>
-      <max>255.000000</max>
-      <outputtype>1</outputtype>
-      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFTABLE>
-  <XDFTABLE uniqueid="0x7F494" flags="0x30">
-    <title>Gauge settings (bitmask)</title>
-    <CATEGORYMEM index="1" category="252" />
-    <CATEGORYMEM index="2" category="244" />
-    <XDFAXIS id="x" uniqueid="0x0">
-      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>1</indexcount>
-      <outputtype>4</outputtype>
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <LABEL index="0" value="-" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="y" uniqueid="0x0">
-      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
-      <indexcount>1</indexcount>
-      <outputtype>4</outputtype>
-      <datatype>0</datatype>
-      <unittype>0</unittype>
-      <DALINK index="0" />
-      <LABEL index="0" value="-" />
-      <MATH equation="X">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-    <XDFAXIS id="z">
-      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7F494" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <decimalpl>2</decimalpl>
-      <min>0.000000</min>
-      <max>255.000000</max>
-      <outputtype>1</outputtype>
-      <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
-        <VAR id="X" />
-      </MATH>
-    </XDFAXIS>
-  </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB3E" flags="0x30">
-    <title>Push to pass map: minus button</title>
+    <title>JB-Push to pass map: minus button</title>
     <description>Map held while the minus button (0xD000EEDD) is down. 0 = off, 1 = map 1 ... 5 = map 5. Requires the push to pass patch.</description>
     <CATEGORYMEM index="1" category="256" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -38496,7 +38992,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB3F" flags="0x30">
-    <title>Push to pass map: plus button</title>
+    <title>JB-Push to pass map: plus button</title>
     <description>Map held while the plus button (0xD000EEE2) is down. 0 = off, 1 = map 1 ... 5 = map 5. Requires the push to pass patch.</description>
     <CATEGORYMEM index="1" category="256" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -38535,7 +39031,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7CB3B" flags="0x30">
-    <title>Push to pass lamps</title>
+    <title>JB-Push to pass lamps</title>
     <description>Dash lamp while push to pass is held. 0 = off, 1 = on (plus blinks the CEL, minus blinks the EPC, same blink as a map change). Requires the push to pass patch.</description>
     <CATEGORYMEM index="1" category="256" />
     <XDFAXIS id="x" uniqueid="0x0">

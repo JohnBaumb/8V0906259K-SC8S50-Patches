@@ -51,9 +51,9 @@ never writes them, so applying or removing it leaves your settings alone:
 
 | Setting | Address | Values |
 |---|---|---|
-| Push to pass map: plus button | `0x27CB3F` | 0 = off, 1 = map 1 ... 5 = map 5 |
-| Push to pass map: minus button | `0x27CB3E` | 0 = off, 1 = map 1 ... 5 = map 5 |
-| Push to pass lamps | `0x27CB3B` | 0 = off, 1 = on |
+| JB-Push to pass map: plus button | `0x27CB3F` | 0 = off, 1 = map 1 ... 5 = map 5 |
+| JB-Push to pass map: minus button | `0x27CB3E` | 0 = off, 1 = map 1 ... 5 = map 5 |
+| JB-Push to pass lamps | `0x27CB3B` | 0 = off, 1 = on |
 
 Each button can hold its own map, or be off. Plus to map 2 and minus to map 3, plus only, minus
 only, whatever you like. Map numbers are the ones the app shows, 1 to 5.

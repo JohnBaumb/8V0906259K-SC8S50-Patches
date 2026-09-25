@@ -5,9 +5,24 @@ crank. Without this, the MK7 head unit shows the remembered profile but tells th
 "Normal" until you press the selector once, so the ECU runs Normal until you do. Measured on a
 2016 Golf R: coordinator target 2 from key-on, Race latched only after the first press.
 
-**Status: v1.0, verified** on one car (MK7 Golf R, 8V0906259K, SwitchPatch 29.33, push-to-pass
-v1.1): key on in Race after a real key-off, coordinator still sending Normal, ECU already in Race
-before cranking, engine started in Race. Selector, map switching and the drive were normal.
+**Status: v1.1, verified** on one car (MK7 Golf R, 8V0906259K, SwitchPatch 29.33, push-to-pass
+v1.1). **If you run v1.0, update: see the amendment below.**
+
+## v1.1 amendment (2026-09-25)
+
+**Issue:** after a drive in Race, the car stayed stuck in Race at the next start unless you pressed
+Race first. Selecting Comfort, Normal or Individual did nothing.
+
+**Fix:** v1.1 also reads the head unit's "driver switched manually" signal (`0xD0019F28`), so any
+selector press now takes over. Verified on the car. Same footprint; the remembered mode carries over.
+
+**Updating from v1.0:** REMOVE with `JB ModeMemory v1.0 - S50.btp` (kept in this folder), ADD
+`JB ModeMemory v1.1 - S50.btp`, full flash.
+
+```
+python ../btp_apply.py remove "JB ModeMemory v1.0 - S50.btp" mybin_modemem.bin -o mybin_clean.bin
+python ../btp_apply.py add    "JB ModeMemory v1.1 - S50.btp" mybin_clean.bin -o mybin_modemem11.bin
+```
 
 ## Dependencies
 
@@ -30,15 +45,15 @@ switchpatch 29.33.
 
 ## Applying it
 
-BinToolz: One Click Patch, ADD, pick your bin, pick `JB ModeMemory v1.0 - S50.btp`. CHECK and
+BinToolz: One Click Patch, ADD, pick your bin, pick `JB ModeMemory v1.1 - S50.btp`. CHECK and
 REMOVE work, the patch carries the original bytes.
 
 Without BinToolz:
 
 ```
-python ../btp_apply.py add    "JB ModeMemory v1.0 - S50.btp" mybin.bin -o mybin_modemem.bin
-python ../btp_apply.py check  "JB ModeMemory v1.0 - S50.btp" mybin_modemem.bin
-python ../btp_apply.py remove "JB ModeMemory v1.0 - S50.btp" mybin_modemem.bin -o mybin_back.bin
+python ../btp_apply.py add    "JB ModeMemory v1.1 - S50.btp" mybin.bin -o mybin_modemem.bin
+python ../btp_apply.py check  "JB ModeMemory v1.1 - S50.btp" mybin_modemem.bin
+python ../btp_apply.py remove "JB ModeMemory v1.1 - S50.btp" mybin_modemem.bin -o mybin_back.bin
 ```
 
 ## What it does
@@ -46,8 +61,10 @@ python ../btp_apply.py remove "JB ModeMemory v1.0 - S50.btp" mybin_modemem.bin -
 - At every ECU reset it notes the first value the head unit sends. While that value does not
   change, it feeds `DrvModSwt` the mode the engine last ran in instead. So Race left selected
   means Race before cranking.
-- The first selector press releases it for the rest of that key cycle. From then on the head
-  unit owns the mode, including a later return to the key-on mode.
+- The first selector press releases it for the rest of that key cycle: either the head unit's
+  value changes, or its "driver switched manually" bit is set (v1.1; this is what catches
+  Comfort, Normal and Individual). From then on the head unit owns the mode, including a later
+  return to the key-on mode.
 - At shutdown it saves the mode the engine actually latched (1 to 5) in the high byte of the
   switchpatch's NVM halfword. The switchpatch stubs only read and write the low byte, so a revert
   to a plain switchpatch bin sees its map index unchanged; the mode is simply forgotten.
@@ -64,11 +81,14 @@ log before cranking. Pass, with the drive-mode PIDs from the plan:
 | PID | Address | Expect |
 |---|---|---|
 | Coordinator raw | `0xD0019F34` | 2 (head unit still says Normal) |
+| Manual switch | `0xD0019F28` | 0 until you press the selector |
 | Cord latched | `0xD001BCAC` | 3 |
 | LF_DRIV_MOD | `0xD000C4BB` | 8 |
 | STATE_DRIV_MOD | `0xD000C4C2` | 3 |
 
-Then one selector press and back: everything must follow the head unit.
+Then press **Comfort** (not Race): Manual switch goes 1 for about 1.5 s, LF_DRIV_MOD goes 8 -> 1.
+Then Race and back: everything must follow the head unit. Switch off in Comfort, key off properly,
+key on: LF_DRIV_MOD 1 before you touch anything.
 
 ## Worth knowing
 
