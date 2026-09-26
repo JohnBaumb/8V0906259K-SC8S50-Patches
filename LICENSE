@@ -1,0 +1,16 @@
+Copyright (c) 2026 John Baumb
+
+The patches, XDF and scripts in this repository build on SwitchPatch and BinToolz by switchleg
+(https://github.com/Switchleg1/BinToolz) and are released on the same terms as its license.txt.
+The repository-root XDF is derived from switchleg's SwitchPatch XDF, and every patch here
+requires a SwitchPatch bin to work.
+
+THE SOFTWARE AND PATCHES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. COMMERCIAL USE OF THIS SOFTWARE OR PATCHES OF ANY KIND REQUIRES WRITTEN
+PERMISSION FROM THE ORIGINAL AUTHORS: John Baumb for the patches in this repository,
+and switchleg for SwitchPatch, BinToolz and the SwitchPatch XDF they build on.

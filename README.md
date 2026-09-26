@@ -45,3 +45,10 @@ python btp_apply.py remove "push-to-pass/JB P2P v1.1 - S50.btp" out.bin -o back.
 Each folder's README covers the dependencies, testing and caveats. Road tested on one car (MK7
 Golf R, 8V0906259K). Not affiliated with switchleg or BinToolz. Use at your own risk: you are
 flashing your own ECU.
+
+## License
+
+Same terms as switchleg's [BinToolz license](https://github.com/Switchleg1/BinToolz/blob/main/license.txt):
+provided as is, free for non-commercial use. Commercial use (for example tuning customer cars) needs
+written permission from me for these patches **and** from switchleg for SwitchPatch, since every
+patch here needs it. See [LICENSE](LICENSE).
