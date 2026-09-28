@@ -1,5 +1,11 @@
 # 8V0906259K / SC8S50 Patches
 
+> [!WARNING]
+> **These patches are still being tested and updated. Use them at your own risk.**
+> Fixes and new versions land often, so check back frequently and update to the latest
+> release before you flash. Always keep a backup of your original bin, and log your first
+> drives after applying any patch.
+
 Add-on patches for Simos18 **S50** (`SC800S50`, 8V0906259K / 5G0906259x) that stack on top of
 switchleg's **SwitchPatch 29.33**. They use the same `.btp` format as the
 [BinToolz patches](https://github.com/Switchleg1/BinToolz/tree/main/patches), so you add, check and remove them the same way.
