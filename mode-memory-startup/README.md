@@ -70,11 +70,11 @@ python ../btp_apply.py remove "JB ModeMemory v1.1 - S50.btp" mybin_modemem.bin -
   to a plain switchpatch bin sees its map index unchanged; the mode is simply forgotten.
 - Saved mode 0 (first key cycle after flashing, or after the switchpatch's NVM default), or a
   head-unit value outside 1 to 5 (no CAN yet): the patch passes the head-unit value through and
-  the ECU behaves exactly as stock.
+  the ECU behaves exactly as without the patch.
 
 ## Testing it
 
-First start after flashing behaves as stock, by design: nothing is saved yet. Drive once in Race,
+First start after flashing behaves as without the patch, by design: nothing is saved yet. Drive once in Race,
 key off properly (long enough for the head unit to reboot, a few minutes), then key on in Race and
 log before cranking. Pass, with the drive-mode PIDs from the plan:
 
@@ -98,7 +98,12 @@ key on: LF_DRIV_MOD 1 before you touch anything.
 - **Quick restarts** (engine off, key back on within seconds) never needed the patch: the head
   unit stays up and keeps sending the profile. The patch matters after a real key-off.
 - **It remembers the engine's last mode, not the head unit's display.** They agree in practice,
-  because the head unit remembers the same thing.
+  because the head unit remembers the same thing. The exception is right after a flash: the saved
+  mode can be lost, the head unit still shows Race, and the engine starts in Normal. From then on the
+  patch faithfully remembers Normal at every start, so it stays out of step until you press the
+  selector once. **After any flash, tap your profile once on the head unit, even if it already
+  shows it** (selecting Race again is enough). Seen on the test car after a full flash: Race showing,
+  no pops, until Race was tapped again.
 - **Push-to-pass** is unaffected. It switches map slots; this switches the driving profile. The two
   live in different RAM and different flash.
 

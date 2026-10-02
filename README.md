@@ -14,8 +14,8 @@ switchleg's **SwitchPatch 29.33**. They use the same `.btp` format as the
 |---|---|---|
 | [push-to-pass](push-to-pass/) `JB P2P v1.1 - S50.btp` | Hold the steering wheel cruise + or - button to run a chosen map slot. Let go and it returns to your map. Optional CEL/EPC blink while held. **Only works with cruise off.** | **Yes**: 3 settings under Switch Patch. Ships off (all 0). |
 | [mode-memory-startup](mode-memory-startup/) `JB ModeMemory v1.1 - S50.btp` | At key-on the engine starts in the drive mode it last ran in (for example Race) instead of Normal, without pressing the selector first. **v1.0 users: update**, v1.0 could stay stuck in Race. | No, there are no settings. |
-| [rolling-anti-lag-v2](rolling-anti-lag-v2/) `JB RAL V2 v1.0 - S50.btp` | RAL only engages after a deliberate hold (300 ms suggested), Cancel becomes a third button choice, and RAL no longer bucks when it hits its time limit with the button still held. | **Yes**: the hold, Cancel as button 2, and the time limit in seconds, under RAL. Hold and Cancel ship off (0 = stock); the time-limit fix is always on. |
-| [launch-control-v2](launch-control-v2/) `JB LC V2 v1.0 - S50.btp` | Launch control limiter mode per map: SwitchPatch (fuel cut) or ME7-style spark cut (**experimental**, read the warning). Launch boost cap in psi, warm-engine gate using the LC oil and coolant minimums, optional exhaust flaps open while holding. | **Yes**: mode per map, caps, spark cut angle and options, under LC. All 0 = SwitchPatch mode, caps off; the temperature gate is always on. |
+| [rolling-anti-lag-v2](rolling-anti-lag-v2/) `JB RAL V2 v1.0 - S50.btp` | RAL only engages after a deliberate hold (300 ms suggested), Cancel becomes a third button choice, and RAL no longer bucks when it hits its time limit with the button still held. | **Yes**: the hold, Cancel as button 2, and the time limit in seconds, under RAL. Hold and Cancel ship off (0 = SwitchPatch behaviour); the time-limit fix is always on. |
+| [launch-control-v2](launch-control-v2/) `JB LC V2 v1.4 - S50.btp` | Launch control limiter mode per map: SwitchPatch (fuel cut) or ME7-style spark cut (**experimental**, read the warning). Launch boost cap in psi, warm-engine gate using the LC oil and coolant minimums, optional exhaust flaps open while holding. Spark cut patterns (burst length, spacing, randomness), air shot and random air for pops on catless cars, and 18 [presets](launch-control-v2/presets/) rated by how hard they are on the car. | **Yes**: mode per map, caps, spark cut angle and options, under LC. All 0 = SwitchPatch mode, caps off; the temperature gate is always on. |
 
 ## How they work
 
@@ -42,7 +42,7 @@ python btp_apply.py remove "push-to-pass/JB P2P v1.1 - S50.btp" out.bin -o back.
 - Push-to-pass only: **map select** enabled in the switchpatch (XDF: Map Switching > UI button,
   `0x27CB28`, tested with 1 = Cruise Resume).
 - Push-to-pass, RAL V2 and LC V2: **TunerPro** with `SC8S50_switchpatch29.33_v1.001+JB-patches.xdf`
-  (repo root), one XDF for every patch here. It is the stock 29.33 S50 XDF plus each patch's
+  (repo root), one XDF for every patch here. It is the SwitchPatch 29.33 S50 XDF plus each patch's
   settings (titles starting `JB-`), Cancel as RAL button 2, the RAL time limit in seconds, clearer
   names for the SwitchPatch RAL and LC settings, and the factory drive-off torque limiter under
   Launch Control (factory). If you have your own XDF, you can copy those entries into it.

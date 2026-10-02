@@ -1,218 +1,157 @@
 # Launch Control V2 for SwitchPatch 29.33 (Simos18, S50)
 
-> **Spark cut mode is extremely experimental.** It puts unburnt fuel into a hot exhaust on purpose,
-> runs very late timing, and switches misfire detection off while it holds. It has been road tested
-> on one car for a handful of launches. **If you use spark cut mode, you do so entirely at your own
-> risk. I am not responsible for broken engines, turbos, catalytic converters, exhaust parts,
-> clutches, gearboxes or anything else.** SwitchPatch mode is the conservative choice.
+> **Spark cut mode is extremely experimental**, road tested on one car. It sends unburnt fuel and
+> air into a hot exhaust, runs very late timing and turns misfire detection off while holding.
+> **Use it at your own risk; I am not responsible for any damage.** Off-road and closed-course use
+> only: follow your local laws.
 
-LC V2 lets each map pick how launch control holds rpm, and sets launch boost in psi:
+Each map picks how launch control holds rpm:
 
-1. **Limiter mode per map.** SwitchPatch mode is the SwitchPatch launch control (fuel cut, 1 or 2
-   of 4 cylinders). Spark cut mode holds rpm by cutting spark on all four coils, ME7 style, with
-   fuel still injected.
-2. **Launch boost in psi.** A boost cap for each mode, so launch boost stays put when ambient
-   pressure, air temperature or timing change.
-3. **Warm engine only.** Launch control waits for the XDF's minimum oil and coolant temperatures
-   (LC 1.5, included).
-4. **Exhaust flaps open** while holding, optional, both modes.
-5. **Catless options** for spark cut: longer cut bursts and a richer mixture.
+- **SwitchPatch mode:** the SwitchPatch launch control (fuel cut). The safest choice, but still not safe:
+  any launch loads the clutch, gearbox and turbo. No fuel in the exhaust, so it works with a cat.
+- **Spark cut mode:** cuts all four coils, ME7 style. Loud with the air settings, **catless only**.
 
-Based on setzi's ME7.x launch control implementation, adapted for Simos18.
+Both add a launch boost cap in psi, a warm-engine gate (LC minimum oil and coolant temperatures)
+and optional exhaust flaps open while holding. Based on setzi's ME7.x launch control.
 
 ![LC V2 at a glance](img/overview.png)
 
-**Status: v1.0, road tested** on one car (MK7 Golf R, manual, 8V0906259K, SwitchPatch 29.33 with
-push-to-pass, mode memory and RAL V2): map 1 SwitchPatch mode, map 2 spark cut mode, LC target
-4000 rpm. SwitchPatch mode: tested, works. Spark cut mode: **experimental**, see the warning above.
+| Version | Adds | Road tested |
+|---|---|---|
+| v1.0 | Limiter mode per map, psi boost caps, temperature gate, flaps, spark cut angle and burst length | Yes |
+| v1.1 | Random cut patterns | Yes |
+| v1.2 | Fuel trim held off at the spark cut limiter | Yes |
+| v1.3 | Air shot | Yes: first pops and flames |
+| v1.4 | Random air | Yes: pops all through the hold |
 
-## Which mode?
-
-Launch performance is about the same in both modes. You are choosing between gentle and loud.
+New settings at 0 behave exactly like the version before.
 
 ![Launch hold at 4000 rpm, both modes](img/launch-hold.png)
 
-### SwitchPatch mode
+## Spark cut: what makes the pops
 
-The SwitchPatch launch control, plus the temperature gate, the psi boost cap and the flaps option.
+Spark cut alone never popped on the test car, at any angle, burst length or mixture: the cut charge
+has no spare oxygen. **Air** does it. These settings cut fuel as well as spark on some events, so
+plain air follows the fuel and the next fired event lights it:
 
-Pros:
-- Cooler: the exhaust heat model peaked at 1209 C on the test car, about the same as the
-  SwitchPatch implementation.
-- No extra fuel in the exhaust. Cut cylinders get no fuel, so nothing burns in the manifold, turbo
-  or cat.
-- Misfire detection stays fully on.
-- Fine with a cat. The sensible daily map.
+- **Air shot (v1.3):** the last N cut events of each burst. One bang per burst.
+- **Random air (v1.4):** a % of events at the limiter, so pops land all through the hold. Keep it
+  under the share the hold needs cut (about 50 % at -25°, 20 % at -30°) or rpm sags.
 
-Cons:
-- Looser hold: rpm spread (sd) 29, because it cuts in stages of 1 or 2 injectors.
-- Never cuts more than 2 of 4 cylinders, so a very high boost request can push rpm past the target.
-- Quieter. That's the point, but it's not the show.
+![What burst length, the air shot and random air do](img/burst-length.png)
 
-### Spark cut mode (experimental)
+![Real logs: air shot alone vs air shot plus random air](img/air-hold.png)
 
-Every cylinder still gets fuel. Above the target rpm the coils don't fire, so that fuel goes
-into the exhaust and lights there: the machine-gun crackle.
+**Risks:** exhaust heat (ECU model up to about 1500 C at -30° with random air), pressure spikes on
+the turbo, wastegate, O2 sensors and mufflers, fuel in the oil, no misfire detection while holding,
+flames behind the car, which can start a real fire in dry grass, leaves, spilled fuel or anything else
+that burns (never hold it near anything flammable; keep an extinguisher at hand). **With a hood exit, side
+exit, dump or turndown exhaust the flames come out at the car itself and can set it on fire: do not use spark
+cut with one.** With a cat or GPF the fuel burns inside it. Keep holds to 2 or 3 s.
 
-Pros:
-- The sound. On a catless car, bigger bangs and flames with the catless options.
-- Tightest hold: rpm spread (sd) 14, half of SwitchPatch mode. It checks the real rpm on every
-  ignition event and can cut all four coils.
-- Clean let-go: all coils and normal timing are back on the next ignition event after the clutch
-  comes up.
+**Ignition angle:** 0 on a SwitchPatch 29.33 bin shows as -35.6°, so **set it first**. -25° is the tested
+default; -30° is harsher, sits 50 to 90 rpm under target and **overshoots the boost cap** (up to
+about 22 psi on a 17.5 cap). Don't go below -30°.
 
-Cons and risks:
-- **Heat.** The exhaust heat model peaked at 1303 C, about 100 C more than SwitchPatch mode. The
-  turbine, manifold, O2 sensors, flaps and gaskets all take it.
-- **Unburnt fuel in the exhaust.** With a cat or GPF, it burns inside it and can melt or crack it.
-- **Oil dilution.** On direct injection, fuel sprayed into a cylinder that doesn't fire washes
-  the bore. Long or repeated holds put fuel in the oil.
-- **Misfire detection is off** while holding and for a set time afterwards. A real misfire in
-  that window is not seen or logged.
-- **Pressure spikes** from the bangs load the turbo, wastegate, O2 sensors and mufflers, more so
-  with the catless burst option.
-- **Very late timing** (-25° on the test car) for as long as you hold.
-- **Not road legal** with the catless options, and flames can scorch the bumper or whatever is
-  behind the car.
+**Lambda:** leave it off with air. At 0.72 the test car flamed but smoked black.
 
-Keep spark cut holds short (2 to 3 s), let the car cool between launches, and don't sit on the
-limiter for show.
-
-## Boost
-
-In the SwitchPatch implementation, launch boost comes from **LC Target TQ** (in Nm): more Nm, more
-boost. The boost a given Nm asks for moves with ambient pressure, air temperature and timing. LC V2
-adds a cap in psi for each mode, so what you set is what you get.
-
-![Every logged launch hold, by limiter and boost target](img/boost-build.png)
-
-- **SwitchPatch mode:** the cap only trims the Target TQ request. If boost stays under the cap,
-  raise Target TQ (test car: 250 Nm held about 6.5 psi, 450 Nm reached the 15 psi cap).
-- **Spark cut mode:** keeps your pedal's request, which on its own would build the tune's
-  full-throttle boost. The spark cut cap is what stops that. At -25° the wastegate opens early, so
-  set the cap a few psi above what you want (test car: a 17.5 cap held about 14.7).
-
-More boost means more heat and more load on the clutch at launch.
-
-## Warm engine only (LC 1.5)
-
-The SwitchPatch XDF has always had LC minimum oil and coolant temperatures, but nothing in the
-SwitchPatch reads them. LC V2 does, in both modes. The check runs only when launch control arms,
-so a launch that's already holding is never dropped by a reading at the limit.
-
-![Launch control respects its minimum oil and coolant temperatures](img/cold-gate.png)
-
-## Exhaust flaps
-
-With **JB-LC exhaust flaps open** set to 1, both flaps open while launch control holds, in either
-mode and in any drive mode. Stock flap control takes over again as soon as launch control lets go.
-In race mode the flaps are usually open already, so the option matters in the other drive modes.
-
-![Both exhaust flaps open while launch control holds](img/exhaust-flaps.png)
-
-## Dependencies
-
-Not standalone. The patch refuses to apply if the bytes it expects are not there.
-
-| Dependency | Why |
-|---|---|
-| Simos18 **S50** box code (`SC800S50`, 8V0906259K / 5G0906259x family), 4 MB bin | Every address is S50. |
-| **`SL PATCH.29.33 - S50`** (switchleg SwitchPatch 29.33) already applied | LC V2 hooks the SwitchPatch launch control, spark modifier, boost and lambda wrappers, and uses its LC settings and RAM. |
-| Blank flash at file `0x132FC0..0x13327F` | Where the routines live, after the RAL V2 block. |
-| **Full flash** (ASW) after applying | The code is in ASW. Changing the settings afterwards is CAL-only. |
-| BinToolz, or stock Python 3 with the `btp_apply.py` in the repo root | To apply, check or remove the `.btp`. |
-| TunerPro with `SC8S50_switchpatch29.33_v1.001+JB-patches.xdf` from the repo root | The only way to pick the mode per map and set the caps, angle and options. |
-
-**Not** dependencies: push-to-pass, mode memory and RAL V2. They use separate flash, and the test
-car runs all four.
+**[Presets](presets/README.md):** 18 ready-made patterns rated 1 (Mild) to 4 (Extreme). Four
+without air are the gentlest spark cut, but **not safe** with a cat:
+with a cat, use SwitchPatch mode.
 
 ## Applying it
 
-BinToolz: One Click Patch, ADD, pick your bin, pick `JB LC V2 v1.0 - S50.btp`. CHECK and REMOVE
-work, the patch carries the original bytes.
+Needs the S50 box code and **`SL PATCH.29.33 - S50`** already applied. Uses blank flash at
+`0x132FC0..0x133BBF`.
 
-Without BinToolz:
+BinToolz: One Click Patch, ADD, `JB LC V2 v1.4 - S50.btp`, then a **full flash**. After that,
+settings changes are CAL only. To upgrade, REMOVE your old LC V2 first; settings stay.
 
 ```
-python ../btp_apply.py add    "JB LC V2 v1.0 - S50.btp" mybin.bin -o mybin_lcv2.bin
-python ../btp_apply.py check  "JB LC V2 v1.0 - S50.btp" mybin_lcv2.bin
-python ../btp_apply.py remove "JB LC V2 v1.0 - S50.btp" mybin_lcv2.bin -o mybin_back.bin
+python ../btp_apply.py add "JB LC V2 v1.4 - S50.btp" mybin.bin -o mybin_lcv2.bin
 ```
 
 ## Settings
 
-All in the repo-root XDF under **LC**. The patch never writes them. The new settings are 0 in stock
-29.33: every map in SwitchPatch mode, both caps off and flaps on stock control. A bare install
-changes nothing except the temperature gate, so **check your LC minimum oil and coolant
-temperatures first.**
+In the repo-root XDF under **LC**. All 0 on a SwitchPatch 29.33 bin (SwitchPatch mode, caps off), so a bare
+install only adds the temperature gate: **check your LC minimum oil and coolant temperatures.**
 
-| Setting | Address | Modes | Values | Test car |
-|---|---|---|---|---|
-| JB-LC limiter mode (x5, one per map) | `0x27D813..17` | | 0 = SwitchPatch, 1 = spark cut | map 1: 0, map 2: 1 |
-| Enable LC (per map, SwitchPatch) | `0x27D835..39` | both | must be on for either mode | on |
-| Target RPM | `0x27CB36` | both | launch rpm | 4000 |
-| LC minimum oil / coolant temperature | `0x27CB38` / `39` | both | 0 = no minimum | 60 C / 75 C |
-| JB-LC exhaust flaps open | `0x27D818` | both | 1 = forced open while holding, 0 = stock | 1 |
-| Target TQ | `0x27CB32` | SwitchPatch | Nm, sets launch boost | 450 Nm |
-| Timing during RPM limiter and rampout | `0x27CB31` | SwitchPatch | deg | -25° |
-| JB-LC boost cap | `0x27D856` | SwitchPatch | psi above ambient, 0 = off | 15 psi |
-| JB-LC spark cut ignition angle | `0x27D81A` | spark cut | deg, the final angle while holding | -25° |
-| JB-LC spark cut boost cap | `0x27D872` | spark cut | psi above ambient, 0 = off | 17.5 psi |
-| JB-LC spark cut misfire fade-out hold | `0x27D819` | spark cut | ms misfire detection stays off after the hold | 500 ms |
-| JB-LC spark cut lambda | `0x27D858` | spark cut, **catless only** | richer lambda while holding, 0 = off | 0 (off) |
-| JB-LC spark cut burst length | `0x27D859` | spark cut, **catless only** | coil cuts in a row, 0 or 1 = smooth, 3 to 8 = bigger bangs | 1 |
+**Setup:** turn it on and set the hold.
 
-**Set the spark cut ignition angle before you pick spark cut for a map.** It's 0 in stock 29.33,
-which the XDF shows as -35.6°, far later than anything tested.
+| Setting | Address | What it does | Tested with |
+|---|---|---|---|
+| JB-LC limiter mode (map 1..5) | `0x27D813..17` | How launch control holds rpm on that map. 0 = SwitchPatch mode (fuel cut), 1 = spark cut mode. | map 2: 1 |
+| JB-LC exhaust flaps open | `0x27D818` | 1 = both exhaust flaps open while launch control holds, any drive mode. | 1 |
+| JB-LC boost cap | `0x27D856` | SwitchPatch mode. Launch boost ceiling in psi above ambient; Target TQ still has to ask for that much. 0 = off. | 15 |
+| JB-LC spark cut boost cap | `0x27D872` | Spark cut mode. Launch boost ceiling in psi above ambient. Set a few psi over what you want at -25°; -30° overshoots it. 0 = off. | 17.5 |
+| JB-LC spark cut ignition angle | `0x27D81A` | Timing of the fired events while holding. Later = weaker events, more heat and boost. Set it before using spark cut. | -30° |
+| JB-LC spark cut misfire fade-out hold | `0x27D819` | How long misfire detection stays off after the hold, in ms. | 500 |
 
-## Testing it
+SwitchPatch settings used as before: Enable LC per map (must be on), Target RPM, Target TQ, LC
+minimum oil / coolant temperature. `0x27D87F..A5` is reserved: leave it at 0.
 
-Log these alongside your usual launch PIDs:
+**Pops** (spark cut mode): how the cut pattern and the bangs behave. Lambda, the air settings and
+anything that groups cuts into bursts are catless only. All 0 = a plain, smooth spark cut limiter. The [presets](presets/README.md) set these for you.
 
-| PID | Address | Expect |
-|---|---|---|
-| LC SC armed | `0xD000F8D8` (u8) | 1 while spark cut is armed (clutch in, stationary, warm) |
-| Ign inhibit mask | `0xD000E56A` (u8) | 15 on the cut samples above target rpm |
-| Misfire det faded | `0xD00014C8` (u8) | nonzero while holding and for the fade-out hold after |
-| LC SC misfire hold | `0xD000F8D9` (u8) | counts down after the hold |
-| LC SC cut | `0xD000F8DC` (u8) | 1 on cut segments |
-| Ign Timing Avg | (stock) | at the spark cut angle while holding |
-| Exh flap L / R (0 = open) | `0xD0000DC7` / `C8` (u8) | 0 while holding with the flaps option on |
-
-Pass: a cold engine revs freely with no limiter; warm, rpm holds at the target in both modes; boost
-settles at or below the cap; no misfire counts during or after a hold.
+| Setting | Address | What it does | Tested with |
+|---|---|---|---|
+| JB-LC spark cut lambda | `0x27D858` | Richer mixture while holding (never below 0.72). More flame, but black smoke. 0 = off. | off |
+| JB-LC spark cut burst length | `0x27D859` | Events cut in a row once rpm passes target. Longer = bigger fuel slug, rougher hold. 0 or 1 = smooth, up to 62. | 12 |
+| JB-LC spark cut burst min (v1.1) | `0x27D876` | Each burst's length is random between this and burst length. 0 = fixed. | 10 |
+| JB-LC spark cut cut band (v1.1) | `0x27D877` | rpm window that keeps the hold on target however the cuts are grouped. The other v1.1 settings need it. 60 to 250, 0 = off. | 250 |
+| JB-LC spark cut gap min / max (v1.1) | `0x27D878` / `79` | Fired events forced after each burst, random between min and max: a breather between bangs. | 3 / 5 |
+| JB-LC spark cut start jitter (v1.1) | `0x27D87A` | Moves burst starts early or late at random for an irregular rhythm, in %. | 0 |
+| JB-LC spark cut rpm floor (v1.1) | `0x27D87B` | Ends a burst early if rpm drops this far below target. Limits how rough it gets. | 240 |
+| JB-LC spark cut cylinder balance (v1.1) | `0x27D87C` | Lets a burst wait up to 3 events so the bangs spread over all cylinders. Costs steadiness; leave at 0. | 0 |
+| JB-LC spark cut air shot (v1.3) | `0x27D87D` | The last N cut events of each burst also cut fuel, so air follows the fuel: one bang per burst. 0 = off. | 6 |
+| JB-LC spark cut random air (v1.4) | `0x27D87E` | % of events at the limiter that also cut fuel: pops all through the hold. Keep under about 50 % at -25°, 20 % at -30°. Max 50, 0 = off. | 10 % |
 
 ## Worth knowing
 
-- **SwitchPatch mode bouncing at the limiter?** The SwitchPatch's own **RPM filtering amount**
-  (`0x27CB23`) smooths the rpm the limiter reads. At 20 it reacts about 0.2 s late and rpm saws
-  around the target. The test car runs 4 (about 0.05 s). It's a SwitchPatch setting, shared with
-  the RAL limiter, and not changed by the patch.
-- **Spark cut takes about 0.6 s to reach its angle** after it starts retarding (3750 rpm here).
-  That's a rate limit further down the ECU, and harmless.
-- **Both modes let go when the clutch comes up**, before the car moves. Nothing in LC V2 limits
-  torque once the car is rolling.
+- **DSG cars** arm on the brake. The ECU caps a stopped DSG car at **3808 rpm** (`C_N_MAX_DCT`,
+  `0x205C3E`): raise it above your Target RPM.
+- **SwitchPatch mode bouncing?** Lower the SwitchPatch RPM filtering amount (`0x27CB23`); the test
+  car runs 4.
+- Both modes let go when the clutch (DSG: brake) comes up.
 
-## What it actually does
+<details>
+<summary>Log PIDs</summary>
 
-Eight hooks, all jumping to routines in blank flash after the SwitchPatch block. The two code
-regions map as file = VA - `0x80000000` (region 1) and file = VA - `0x80600000` (region 2).
+| PID | Address | Expect |
+|---|---|---|
+| LC SC armed | `0xD000F8D8` (u8) | 1 while armed |
+| LC SC cut | `0xD000F8DC` (u8) | 1 on cut segments |
+| Ign inhibit mask | `0xD000E56A` (u8) | 15 on cut samples |
+| Fuel cut mask | `0xD000E69E` (u8) | 15 on air events |
+| Misfire det faded | `0xD00014C8` (u8) | nonzero while holding |
+| LC SC misfire hold | `0xD000F8D9` (u8) | counts down after the hold |
+| LC SC burst len / left | `0xD000F8E2` / `F8DB` (u8) | next burst length / cuts left |
+| LC SC gap left | `0xD000F8DD` (u8) | forced fired events left |
+| LC SC budget | `0xD000F8E0` (s16) | around 0 with a cut band |
+| LC SC bangs | `0xD000F8E6` (u16) | bangs per cylinder, one hex digit each |
+| Lambda CL enable | `0xD000145F` (u8) | 0 at the limiter |
+| Exh flap L / R | `0xD0000DC7` / `C8` (u8) | 0 (open) while holding |
+
+</details>
+
+<details>
+<summary>What it hooks</summary>
+
+File = VA - `0x80000000` (region 1) or VA - `0x80600000` (region 2). RAM `0xD000F8D8..F8E7`.
 
 | Hook (VA) | Where | What |
 |---|---|---|
-| `0x80132016` | SwitchPatch 10 ms tick | Arming, mode per map, temperature gate, misfire hold. Mode 1 keeps the SwitchPatch LC off. |
-| `0x8089AE52` | `CLC_INH_IGC` (per segment) | Spark cut: ORs all four coils into the ignition inhibit mask while armed and above target rpm, with the burst option. |
-| `0x808AC31E` | Misfire detection fade-out | Fades misfire detection out while armed and for the hold after. |
-| `0x801323D4` | SwitchPatch spark modifier | Forces the final angle to the spark cut angle while retarding. |
-| `0x8089B59C` | ECU minimum ignition angle | Lowers the minimum to the same angle so it isn't clamped. |
-| `0x80132356` | SwitchPatch boost wrapper | Boost setpoint = min(setpoint, ambient + the cap for the active mode). |
-| `0x801324F4` | SwitchPatch lambda wrapper | Spark cut lambda option. |
-| `0x808DB71A` | Exhaust flap loop | Flaps option. |
+| `0x80132016` | SwitchPatch 10 ms tick | Arming, mode per map, temperature gate |
+| `0x8089AE52` | `CLC_INH_IGC` | Spark cut and cut patterns |
+| `0x808AC31E` | Misfire fade-out | Misfire detection off while holding |
+| `0x801323D4` | SwitchPatch spark modifier | Spark cut angle |
+| `0x8089B59C` | ECU minimum ignition angle | Lowered to match |
+| `0x80132356` | SwitchPatch boost wrapper | psi caps |
+| `0x801324F4` | SwitchPatch lambda wrapper | Spark cut lambda |
+| `0x808DB71A` | Exhaust flap loop | Flaps option |
+| `0x808C155E` | Lambda control conditions | Open loop at the limiter |
+| `0x808A4114` | Fuel cut mask builder call | Air shot and random air |
 
-New RAM `0xD000F8D8..F8DD`, unreferenced by the stock code or the SwitchPatch in either region.
+</details>
 
-Spark cut mode follows setzi's ME7.x launch control (spark cut above the launch rpm, fuel left on),
-rebuilt around the Simos18 ignition inhibit mask and the SwitchPatch launch control.
-
-Not affiliated with switchleg, setzi or BinToolz. Provided as is. You are flashing your own ECU, and
-**spark cut mode is extremely experimental: use it at your own risk.**
+Not affiliated with switchleg, setzi or BinToolz. Provided as is.

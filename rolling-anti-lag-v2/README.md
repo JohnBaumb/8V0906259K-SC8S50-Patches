@@ -4,8 +4,8 @@ Three changes to the switchpatch's rolling anti-lag (RAL):
 
 1. **Minimum hold.** RAL only engages once the button has been held longer than a tap, so
    cancelling cruise or brushing the button no longer grabs RAL.
-2. **Cancel as a RAL button.** Stock 29.33 offers Set or Resume; V2 adds Cancel as a third choice.
-3. **No buck at the time limit.** Stock RAL drops out at its time limit and re-engages 10 ms later
+2. **Cancel as a RAL button.** The SwitchPatch implementation offers Set or Resume; V2 adds Cancel as a third choice.
+3. **No buck at the time limit.** In the SwitchPatch implementation RAL drops out at its time limit and re-engages 10 ms later
    with no retard if the button is still held. V2 fades out once and stays off until you let go.
 
 ![RAL button behaviour, SwitchPatch implementation vs patched](img/ral-button-timing.png)
@@ -49,23 +49,23 @@ that byte, so it installs fine over the edit and 0 keeps meaning Cancel.
 
 ## Settings
 
-All in the repo-root XDF under **RAL**. The patch never writes them. Both new bytes are 0 in stock
-29.33, and 0 means stock behaviour, so a bare install changes nothing except the time-limit
+All in the repo-root XDF under **RAL**. The patch never writes them. Both new bytes are 0 in SwitchPatch
+29.33, and 0 means the SwitchPatch implementation's behaviour, so a bare install changes nothing except the time-limit
 ending until you set them.
 
 | Setting | Address | Values | Test car |
 |---|---|---|---|
-| RAL engagement button | `0x27CB26` | 0 = Set, 1 = Resume (stock), **2 = Cancel** (new) | 2 |
+| RAL engagement button | `0x27CB26` | 0 = Set, 1 = Resume (SwitchPatch default), **2 = Cancel** (new) | 2 |
 | JB-RAL minimum hold (new) | `0x27D81B` | 0 to 2540 ms in 10 ms steps, 0 = engage on press | 300 ms |
-| Maximum engagement time | `0x27CB16` | 0 to 10 s (stock 29.33 value 500 shows as 2.3 s) | 10 s |
-| Rev soft / medium / hard limit | `0x27CB18` / `1A` / `1C` | rpm, each step measured from the one before | stock 0 / 64 / 64 |
+| Maximum engagement time | `0x27CB16` | 0 to 10 s (SwitchPatch default 500 shows as 2.3 s) | 10 s |
+| Rev soft / medium / hard limit | `0x27CB18` / `1A` / `1C` | rpm, each step measured from the one before | SwitchPatch default 0 / 64 / 64 |
 
-Removing the patch with the button byte left at 2 gives Set: the stock selector treats anything
+Removing the patch with the button byte left at 2 gives Set: the SwitchPatch selector treats anything
 but 1 as Set.
 
 ## The minimum hold
 
-Stock RAL engages on the first 10 ms tick the button is down. A tap engages it and drops it
+The SwitchPatch implementation engages RAL on the first 10 ms tick the button is down. A tap engages it and drops it
 straight away, which shows in the logs as an rpm dip and bounce during a quick tap.
 
 ![Every Cancel press in 53 logs](img/press-lengths.png)
@@ -81,8 +81,8 @@ Tuning: 500 ms if taps still get through (three presses between 300 and 600 ms w
 
 Cancel still cancels cruise instantly, that is the cruise control, not this code. With the hold
 in place, a cruise-cancel tap no longer reaches RAL. Resume is also the map select button on many
-setups (Map Switching > UI button, `0x27CB28` = 1). Choosing Resume for both is your call, same
-as stock. This is left for people who use pedal presses to enter the map select.
+setups (Map Switching > UI button, `0x27CB28` = 1). Choosing Resume for both is your call, as
+in the SwitchPatch implementation. This is left for people who use pedal presses to enter the map select.
 
 ## The time-limit fix
 
@@ -96,17 +96,17 @@ on the moment the limit is reached:
 
 With V2, RAL ends once with its normal 0.2 s fade-out, the same as letting go of the button, and
 stays off until you release. A press that never got RAL active (rpm outside the window, for
-example) keeps retrying every tick, as stock does. Held past the limit, stock bucks every time the
+example) keeps retrying every tick, as the SwitchPatch implementation does. Held past the limit, the SwitchPatch implementation bucks every time the
 limit comes round again:
 
 ![Maximum engagement time: how long RAL holds before it lets go](img/max-time-limit.png)
 
 ## The time limit in seconds
 
-The stock XDF shows **Maximum engagement cycles** as a raw count. The counter it compares against
+The SwitchPatch 29.33 XDF shows **Maximum engagement cycles** as a raw count. The counter it compares against
 starts after the 0.4 s fade-in and runs at 100 per second plus 1 per ignition event (rpm / 30),
 so its speed depends on rpm. The repo-root XDF shows it in seconds, exact at 3500 rpm: about 15 %
-longer at 2500 rpm, 10 % shorter at 4500 rpm. The stock value 500 is 2.3 s at 3500 rpm.
+longer at 2500 rpm, 10 % shorter at 4500 rpm. The SwitchPatch default 500 is 2.3 s at 3500 rpm.
 
 ![The time limit counter speeds up with rpm](img/time-limit-vs-rpm.png)
 
@@ -116,7 +116,7 @@ call.
 ## Rev limiter steps
 
 Not changed by the patch, only explained better in the XDF. Only the soft limit is measured from
-the engagement rpm; medium and hard are each measured from the step before. The stock
+the engagement rpm; medium and hard are each measured from the step before. The SwitchPatch default
 0 / 64 / 64 cuts at +0, +64 and +128 rpm.
 
 ![RAL rev limiter: each step is measured from the one before it](img/rev-limit-steps.png)
@@ -145,7 +145,7 @@ gives one fade-out and RAL stays off until release.
   car can already be accelerating by then, so RAL waits. Every late or missed engagement in the
   road test was a switchpatch gate like this (rpm climbing, oil below the minimum oil temperature
   in `0x27CB24`, RAL disabled on the map), not the hold.
-- **Set during RAL** (stock already uses it to end RAL) now also keeps RAL off until you release
+- **Set during RAL** (the SwitchPatch implementation already uses it to end RAL) now also keeps RAL off until you release
   the RAL button.
 - **Longest hold is 2540 ms**, one byte in 10 ms steps.
 - **The hold counter is borrowed RAM.** `0xD000F805` is the switchpatch's map-down press counter,
@@ -161,7 +161,7 @@ One 4-byte hook at file `0x131FEE` in the switchpatch button tick jumps to a 100
 - count at the hold: the press passes. Once RAL is active the count latches at hold + 1. If RAL
   then ends while latched (the time limit), the press is masked until release.
 
-For button 2 the routine loads Cancel in place of what the stock selector loaded, so the selector
-itself stays byte-stock. No new RAM. One new CAL byte (the hold) and one new value for an existing one (button 2).
+For button 2 the routine loads Cancel in place of what the SwitchPatch selector loaded, so the selector
+itself stays byte for byte unchanged. No new RAM. One new CAL byte (the hold) and one new value for an existing one (button 2).
 
 Not affiliated with switchleg or BinToolz. Provided as is. You are flashing your own ECU.

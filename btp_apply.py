@@ -92,7 +92,7 @@ def main():
     out = a.out or (a.bin.rsplit(".", 1)[0] + ("_patched.bin" if a.action == "add" else "_unpatched.bin"))
     open(out, "wb").write(buf)
     print(f"wrote {out}")
-    if any(not (0x200000 <= off < 0x280000) for off, _, _ in recs):
+    if any(new != old and not (0x200000 <= off < 0x280000) for off, new, old in recs):   # a guard record (new == old) writes nothing
         print("FULL FLASH REQUIRED: this patch writes outside the calibration block.")
     return 0
 

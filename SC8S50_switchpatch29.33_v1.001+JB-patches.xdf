@@ -31844,8 +31844,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D813" flags="0x30">
-    <title>JB-LC limiter mode</title>
-    <description>Map slot 1. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <title>JB-LC limiter mode (map 1)</title>
+    <description>Map slot 1. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, fuel still injected (except air shot / random air events), misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="248" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -31884,8 +31884,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D814" flags="0x30">
-    <title>JB-LC limiter mode</title>
-    <description>Map slot 2. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <title>JB-LC limiter mode (map 2)</title>
+    <description>Map slot 2. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, fuel still injected (except air shot / random air events), misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="247" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -31924,8 +31924,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D815" flags="0x30">
-    <title>JB-LC limiter mode</title>
-    <description>Map slot 3. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <title>JB-LC limiter mode (map 3)</title>
+    <description>Map slot 3. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, fuel still injected (except air shot / random air events), misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="246" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -31964,8 +31964,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D816" flags="0x30">
-    <title>JB-LC limiter mode</title>
-    <description>Map slot 4. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <title>JB-LC limiter mode (map 4)</title>
+    <description>Map slot 4. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, fuel still injected (except air shot / random air events), misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="245" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -32004,8 +32004,8 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D817" flags="0x30">
-    <title>JB-LC limiter mode</title>
-    <description>Map slot 5. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, injection untouched, misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
+    <title>JB-LC limiter mode (map 5)</title>
+    <description>Map slot 5. Which launch control mode this slot uses (needs Enable LC on). 0 = SwitchPatch mode: the SwitchPatch limiter unchanged (injection cut pattern, Timing during RPM limiter, Target TQ). 1 = spark cut mode: all four coils cut above Target RPM, fuel still injected (except air shot / random air events), misfire detection faded out, JB-LC spark cut ignition angle. Every LC setting says which mode it affects. Needs the LC V2 patch, otherwise unused.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="244" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -32086,7 +32086,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D81A" flags="0x30">
     <title>JB-LC spark cut ignition angle</title>
-    <description>SPARK CUT MODE ONLY. deg BTDC forced while the spark cut is armed and rpm is above Target RPM - 250. Applied through the SwitchPatch spark modifier, and the ECU's minimum ignition angle is lowered to the same value while it is active, so this is the final angle. -25 = what SwitchPatch mode runs. Needs the LC V2 patch, otherwise unused.</description>
+    <description>SPARK CUT MODE ONLY. deg BTDC forced while the spark cut is armed and rpm is above Target RPM - 250, through the SwitchPatch spark modifier, with the ECU minimum lowered to match. SET IT BEFORE USING SPARK CUT: 0 raw shows -35.6. -25 = tested default (hold needs ~half the events cut). -30 = latest tested: weaker fired events, ~a quarter cut, rpm sits a little under target, more boost and heat. Above about -20 the ECU adds up to 7-8 deg. Needs the LC V2 patch.</description>
     <CATEGORYMEM index="1" category="250" />
     <CATEGORYMEM index="2" category="242" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -32206,7 +32206,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D872" flags="0x30">
     <title>JB-LC spark cut boost cap</title>
-    <description>SPARK CUT MODE ONLY. psi above ambient. Caps the boost setpoint while the spark cut holds. 0 = off (the tune's full-throttle boost). At -25 deg the wastegate opens early, so set it a few psi above what you want (test car: a 15 cap held about 12 in 2.5 s). More boost = more exhaust heat and a harder launch. Needs the LC V2 patch (v28 or later).</description>
+    <description>SPARK CUT MODE ONLY. psi above ambient. Caps the boost setpoint while the spark cut holds. 0 = off (the tune's full-throttle boost). At -25 deg the wastegate opens early, so set it a few psi above what you want (test car: a 17.5 cap held about 14.7). At -30 deg boost overshot the same cap to 19-20 psi at burst ends. More boost = more exhaust heat and a harder launch. Needs the LC V2 patch.</description>
     <CATEGORYMEM index="1" category="250" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
@@ -32246,7 +32246,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D858" flags="0x30">
     <title>JB-LC spark cut lambda</title>
-    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Lambda while the spark cut holds, only ever richer. 0 = off. Extra fuel burns in the exhaust (flames). RISKS: with a cat or GPF it burns inside it and can melt or crack it. Heats turbo, manifold, O2 sensors and flaps. Flames can scorch the bumper or anything behind the car. Rich DI dilutes the oil. Below about 0.75 the fired cylinders can misfire. Short holds, cool down between them. Not road legal. Needs the LC V2 patch.</description>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Lambda while the spark cut holds, only ever richer than the ECU's own setpoint (0.81 on the test car), never below 0.72 whatever is set. 0 = off. With air shot / random air, leave it off: at 0.72 the test car flamed but smoked black, the air makes the bang, not the fuel. RISKS: with a cat or GPF the fuel burns inside it. More heat, fuel in the oil. Delivered as set only with LC V2 v1.2 or later. Needs the LC V2 patch.</description>
     <CATEGORYMEM index="1" category="250" />
     <CATEGORYMEM index="2" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -32286,7 +32286,7 @@
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D859" flags="0x30">
     <title>JB-LC spark cut burst length</title>
-    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Segments cut in a row above Target RPM, then one fired segment lights them. 0 or 1 = smooth hold. 3 to 8 = bigger bangs. RISKS: pressure spikes on the turbo, wastegate, gaskets, O2 sensors and mufflers. With a cat the mixture burns inside it and can melt or crack it. Longer bursts = rougher hold, more shock on the mounts. Misfire detection is off during a hold. Short holds, cool down between them. Needs the LC V2 patch.</description>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Segments cut in a row above Target RPM, then one fires. 0 or 1 = smooth hold, up to 62. With burst min set: the longest burst. A burst alone did not pop on the test car (tested to 24): pair it with air shot or random air. RISKS: pressure spikes on the turbo, wastegate, gaskets, O2 sensors and mufflers; with a cat it burns inside it. Longer bursts = rougher hold. Needs the LC V2 patch.</description>
     <CATEGORYMEM index="1" category="250" />
     <CATEGORYMEM index="2" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
@@ -32317,9 +32317,366 @@
       <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D859" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <decimalpl>0</decimalpl>
       <min>0.000000</min>
-      <max>16.000000</max>
+      <max>62.000000</max>
       <outputtype>1</outputtype>
       <MATH equation="((1.0 * X) - 0.0 ) / (1.0 - (0.0 * X))">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D876" flags="0x30">
+    <title>JB-LC spark cut burst min</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Shortest burst. Each burst's length is drawn at random between this and burst length, so the bangs vary in size. 0 = off (every burst is burst length long). Only with a cut band. Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D876" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>62.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D87D" flags="0x30">
+    <title>JB-LC spark cut air shot</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Fuel cut on the last N cut segments of each burst, so those cylinders pump plain air behind the burst's fuel and the next fired segment lights the mix: one bang per burst. 0 = off. Below burst min every burst keeps fuel of its own. RISKS: bigger bangs, flames that can start a fire, more heat and pressure on the turbo, mufflers, O2 sensors and gaskets. Short holds, cool down between them. Needs the LC V2 patch v1.3.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D87D" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D87E" flags="0x30">
+    <title>JB-LC spark cut random air</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. At the limiter, each segment also cuts fuel with this chance, on whichever cylinder comes up, so air slugs land all through the hold, not only at burst ends. Air segments make no torque: keep it below the share the hold needs cut (about 50 % at -25 deg, 20 % at -30) or rpm sags under target. 0 = off. RISKS: more bangs, flames that can start a fire, heat and pressure on the turbo, mufflers, O2 sensors and gaskets. Needs the LC V2 patch v1.4.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D87E" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>50.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X/2.56">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D877" flags="0x30">
+    <title>JB-LC spark cut cut band</title>
+    <description>SPARK CUT MODE ONLY. rpm window around Target RPM where the cut rate goes from 0 to 100 %. A running cut budget follows it, so rpm stays near target however the cuts are grouped: this is what makes the other pattern settings work. 0 = off: hard switch at Target RPM, bursts always finish (v1.0 behaviour). 60 to 250; wide bands suit long bursts. Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D877" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D878" flags="0x30">
+    <title>JB-LC spark cut gap min</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Fired segments forced after each burst before the next can start. More = distinct bangs with a breather between them. 0 = none, but a burst of 2 or more always gets one fired event. Keep it shorter than the burst: the hold needs about half the events cut at -25 deg (a quarter at -30), more when boost peaks, or rpm rides up until a burst starts anyway. Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D878" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D879" flags="0x30">
+    <title>JB-LC spark cut gap max</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Above gap min, the gap after each burst is drawn at random between the two. 0 = off (gap min every time). Keep it small: long gaps let rpm drift up to the ceiling, which evens the rhythm out. Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D879" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D87A" flags="0x30">
+    <title>JB-LC spark cut start jitter</title>
+    <description>SPARK CUT MODE ONLY. CATLESS ONLY. Percent. Moves each burst's start early or late at random, by up to this share of its length. Early and late even out, so rpm stays on target while the rhythm goes irregular. 0 = off, 100 = chaotic. Only with a cut band. Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <CATEGORYMEM index="2" category="54" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D87A" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X/1.28">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D87B" flags="0x30">
+    <title>JB-LC spark cut rpm floor</title>
+    <description>SPARK CUT MODE ONLY. rpm below Target RPM at which a running burst ends early and the engine fires. Caps how far rpm can drop during long bursts. 0 = off (a burst always finishes). Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D87B" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X*2">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7D87C" flags="0x30">
+    <title>JB-LC spark cut cylinder balance</title>
+    <description>SPARK CUT MODE ONLY. Segments a burst may wait so its bang (the first fired segment after it) lands on the cylinder that has lit the fewest. Spreads the shock and heat across all four, but each wait skips a cut, so the hold gets rougher. 0 = off (best hold), max 3. Needs the LC V2 patch v1.1.</description>
+    <CATEGORYMEM index="1" category="250" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <outputtype>4</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="-" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x06" mmedaddress="0x7D87C" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>0</decimalpl>
+      <min>0.000000</min>
+      <max>16.000000</max>
+      <outputtype>1</outputtype>
+      <MATH equation="X">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -36324,7 +36681,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D835" flags="0x30">
-    <title>Enable LC</title>
+    <title>Enable LC (map 1)</title>
     <description>BOTH MODES. Map slot 1. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="248" />
@@ -36364,7 +36721,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D836" flags="0x30">
-    <title>Enable LC</title>
+    <title>Enable LC (map 2)</title>
     <description>BOTH MODES. Map slot 2. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="247" />
@@ -36404,7 +36761,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D837" flags="0x30">
-    <title>Enable LC</title>
+    <title>Enable LC (map 3)</title>
     <description>BOTH MODES. Map slot 3. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="246" />
@@ -36444,7 +36801,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D838" flags="0x30">
-    <title>Enable LC</title>
+    <title>Enable LC (map 4)</title>
     <description>BOTH MODES. Map slot 4. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="245" />
@@ -36484,7 +36841,7 @@
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x7D839" flags="0x30">
-    <title>Enable LC</title>
+    <title>Enable LC (map 5)</title>
     <description>BOTH MODES. Map slot 5. 1 = launch control on for this slot, 0 = off. JB-LC limiter mode picks how it limits.</description>
     <CATEGORYMEM index="1" category="252" />
     <CATEGORYMEM index="2" category="244" />

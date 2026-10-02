@@ -24,7 +24,7 @@ refusing to apply if the bytes it expects are not there.
 | Blank flash at file `0x132D44..0x132E78` (308 bytes after the switchpatch block) | Where the routine and lamp function live. No S50 patch in the BinToolz set writes there (HSL, CBRICK, SWG, Immo, FREE SAP, switchpatch 28.12 to 29.33 checked). |
 | **Full flash** (ASW) after applying | The code is in ASW1, a CAL-only flash will not carry it. Changing the three settings afterwards is CAL-only. |
 | BinToolz, or stock Python 3 with the `btp_apply.py` in the repo root | To apply, check or remove the `.btp`. |
-| TunerPro with `SC8S50_switchpatch29.33_v1.001+JB-patches.xdf` from the repo root | The only way to set which map each button holds and whether the lamps are on. It is the stock 29.33 S50 XDF plus the settings for every patch in this repo; push-to-pass's three bytes are under **Switch Patch**. |
+| TunerPro with `SC8S50_switchpatch29.33_v1.001+JB-patches.xdf` from the repo root | The only way to set which map each button holds and whether the lamps are on. It is the SwitchPatch 29.33 S50 XDF plus the settings for every patch in this repo; push-to-pass's three bytes are under **Switch Patch**. |
 | The steering wheel's cruise + and - buttons | They are the switchpatch's map-up / map-down buttons. Push-to-pass only reads them while no map-switch gesture is open and cruise control is off. |
 
 ## Applying it
@@ -139,7 +139,7 @@ leaves the pending slot holding the map you came from. That is the whole trick, 
 the patch needs no RAM of its own for the return address.
 
 It is 308 bytes in blank flash after the switchpatch block, one rewritten jump in the
-switchpatch tick, and the two stock calls to the switchpatch MIL stub redirected to the lamp
+switchpatch tick, and the switchpatch's two calls to its MIL stub redirected to the lamp
 function (four records). No other S50 patch in the BinToolz set touches that space: HSL, CBRICK, SWG,
 Immo, FREE SAP and every switchpatch from 28.12 to 29.33 were checked.
 
